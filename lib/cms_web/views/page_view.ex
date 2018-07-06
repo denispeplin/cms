@@ -8,5 +8,8 @@ defmodule CmsWeb.PageView do
       block.name == Atom.to_string(name)
     end)
     |> Map.fetch!(:text)
+    |> HtmlSanitizeEx.strip_tags
+    |> String.replace("\n", "<br>\n")
+    |> raw
   end
 end
