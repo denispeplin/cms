@@ -9,3 +9,8 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+Cms.Repo.transaction fn ->
+  page = Cms.Repo.insert!(%Cms.Content.Page{template: "index"})
+  Cms.Repo.insert!(%Cms.Content.Block{name: "first", text: "block\ntext", page_id: page.id})
+end
