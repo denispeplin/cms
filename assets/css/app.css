@@ -1,1 +1,7 @@
 /* This file is for your main application css. */
+
+.editable {
+  border-style: solid;
+  border-width: 1px;
+  border-color: red;
+}
