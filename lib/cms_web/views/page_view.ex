@@ -15,12 +15,22 @@ defmodule CmsWeb.PageView do
   end
 
   defp wrap_block(block, edit_mode) do
-    content_tag :div, class: edit_class(edit_mode) do
+    content_tag :div, opts(edit_mode) do
       block
     end
   end
 
-  defp edit_class(nil), do: edit_class(false)
+  defp opts(edit_mode) do
+    [
+      class: edit_mode |> editable? |> edit_class,
+      contenteditable: editable?(edit_mode)
+    ]
+  end
+
   defp edit_class(false), do: ""
   defp edit_class(true), do: "editable"
+
+  defp editable?(nil), do: editable?(false)
+  defp editable?(false), do: false
+  defp editable?(true), do: true
 end
