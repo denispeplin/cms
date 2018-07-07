@@ -17,4 +17,10 @@ defmodule Cms.Content.Block do
     |> cast(attrs, [:name, :text])
     |> validate_required([:name, :text])
   end
+
+  def update_changeset(block, attrs) do
+    block
+    |> cast(attrs, [:text])
+    |> validate_required([:name, :text])
+  end
 end
