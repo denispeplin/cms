@@ -1,0 +1,9 @@
+<%= if Plug.Conn.get_session(@conn, :edit_mode) do %>
+  <%= form_for @conn, edit_mode_path(@conn, :delete), [method: :delete], fn _f -> %>
+    <%= submit "View" %>
+  <% end %>
+<% else %>
+  <%= form_for @conn, edit_mode_path(@conn, :create), fn _f -> %>
+    <%= submit "Edit" %>
+  <% end %>
+<% end %>
