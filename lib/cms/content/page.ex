@@ -4,6 +4,8 @@ defmodule Cms.Content.Page do
 
 
   schema "content_pages" do
+    field :title, :string
+    field :slug, :string
     field :template, :string
 
     has_many :blocks, Cms.Content.Block
@@ -12,9 +14,15 @@ defmodule Cms.Content.Page do
   end
 
   @doc false
+  # TODO: handle non-unique slugs
   def changeset(page, attrs) do
+    attrs = Map.put(attrs, :slug, slugify(attrs[:title]))
+    |> IO.inspect
     page
-    |> cast(attrs, [:template])
-    |> validate_required([:template])
+    |> cast(attrs, [:template, :title, :slug])
+    |> validate_required([:template, :title, :slug])
   end
+
+  defp slugify(nil), do: nil
+  defp slugify(text), do:  Slugger.slugify_downcase(text)
 end

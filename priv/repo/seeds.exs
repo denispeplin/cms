@@ -11,7 +11,15 @@
 # and so on) as they will fail if something goes wrong.
 
 Cms.Repo.transaction fn ->
-  page = Cms.Repo.insert!(%Cms.Content.Page{template: "index"})
+  page = %Cms.Content.Page{}
+  |> Cms.Content.Page.changeset(%{title: "Page 1", template: "index"})
+  |> Cms.Repo.insert!
   Cms.Repo.insert!(%Cms.Content.Block{name: "first", text: "1st block\ntext", page_id: page.id})
   Cms.Repo.insert!(%Cms.Content.Block{name: "second", text: "2nd block\ntext", page_id: page.id})
+
+  page = %Cms.Content.Page{}
+  |> Cms.Content.Page.changeset(%{title: "Page 2", template: "index"})
+  |> Cms.Repo.insert!
+  Cms.Repo.insert!(%Cms.Content.Block{name: "first", text: "p2, 1st block\ntext", page_id: page.id})
+  Cms.Repo.insert!(%Cms.Content.Block{name: "second", text: "p2, 2nd block\ntext", page_id: page.id})
 end

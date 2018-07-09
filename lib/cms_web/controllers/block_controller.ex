@@ -1,6 +1,5 @@
 defmodule CmsWeb.BlockController do
   use CmsWeb, :controller
-  import Ecto.Query, only: [from: 2]
   alias Cms.Repo
   alias Cms.Content
 

@@ -20,6 +20,7 @@ defmodule CmsWeb.Router do
     pipe_through [:preparations, :browser] # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/pages", PageController, only: [:show]
     resources "/edit_mode", EditModeController, only: [:create, :delete], singleton: true
   end
 

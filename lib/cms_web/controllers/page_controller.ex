@@ -7,7 +7,17 @@ defmodule CmsWeb.PageController do
 
   def index(conn, _params) do
     page = from(p in Cms.Content.Page,
-      where: p.template == ^@template,
+      where: p.slug == "page-1",
+      preload: [:blocks]
+    )
+    |> Repo.one!
+
+    render conn, template_to_render(), page: page
+  end
+
+  def show(conn, %{"id" => slug}) do
+    page = from(p in Cms.Content.Page,
+      where: p.slug == ^slug,
       preload: [:blocks]
     )
     |> Repo.one!
