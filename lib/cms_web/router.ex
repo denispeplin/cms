@@ -27,6 +27,6 @@ defmodule CmsWeb.Router do
   scope "/", CmsWeb do
     pipe_through [:preparations, :api]
 
-    resources "/blocks", BlockController, only: [:update], singleton: true
+    resources "/blocks", BlockController, only: [:update]
   end
 end

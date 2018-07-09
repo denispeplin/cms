@@ -4,6 +4,7 @@ defmodule Cms.Content.Block do
 
 
   schema "content_blocks" do
+    field :uuid, :binary_id, read_after_writes: true
     field :name, :string
     field :text, :string
     field :page_id, :id

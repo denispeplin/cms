@@ -4,9 +4,9 @@ defmodule CmsWeb.BlockController do
   alias Cms.Repo
   alias Cms.Content
 
-  def update(conn, params) do
-    block = from(b in Cms.Content.Block, [])
-    |> Repo.one!
+  def update(conn, %{"id" => uuid} = params) do
+    block = Cms.Content.Block
+    |> Repo.get_by!(uuid: uuid)
     |> Content.Block.update_changeset(params)
     |> Repo.update!
 

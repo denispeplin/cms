@@ -17,6 +17,7 @@
         <a href="https://github.com/phoenixframework/phoenix">Source</a>
       </li>
     </ul>
+    <%= render_block @conn, @page, :first %>
   </div>
 
   <div class="col-lg-6">
@@ -35,4 +36,4 @@
   </div>
 </div>
 
-<%= render_block @page, :first, get_session(@conn, :edit_mode) %>
+<%= render_block @conn, @page, :second %>

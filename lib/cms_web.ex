@@ -41,6 +41,7 @@ defmodule CmsWeb do
       import CmsWeb.Router.Helpers
       import CmsWeb.ErrorHelpers
       import CmsWeb.Gettext
+      import CmsWeb.ViewHelpers
       alias CmsWeb.Helpers
     end
   end

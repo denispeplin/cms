@@ -1,6 +1,6 @@
-function copyContent() {
-  document.getElementById("hiddenTextarea").value =
-    document.getElementById("blockContentEditable").innerText;
+function copyContent(domUuid) {
+  var formText = $('#' + domUuid + ' .blockContentEditable').text();
+  $('#' + domUuid + ' .hiddenTextarea').val(formText);
   return true;
 }
 
@@ -12,7 +12,8 @@ document.addEventListener('ajax:success', function(e) {
 });
 
 $(document).ready(function() {
-  $("#block_form").submit(function(event) {
-    copyContent(document.getElementById("hiddenTextarea").value);
+  $(".block_form").submit(function(event) {
+    var target = $(event.target);
+    copyContent(target.data().domUuid);
   });
 });
