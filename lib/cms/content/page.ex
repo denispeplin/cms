@@ -26,3 +26,9 @@ defmodule Cms.Content.Page do
   defp slugify(nil), do: nil
   defp slugify(text), do:  Slugger.slugify_downcase(text)
 end
+
+defimpl Phoenix.Param, for: Cms.Content.Page do
+  def to_param(%Cms.Content.Page{slug: slug}) do
+    slug
+  end
+end
